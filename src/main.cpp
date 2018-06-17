@@ -1,9 +1,10 @@
 #include <kaspar/algorithm/linear_model.hpp>
+#include <kaspar/algorithm/random.hpp>
 #include <iostream>
 
 using namespace kaspar;
 
-int main(void) {
+int test_linear(void) {
   int batch_size = 3;
   float x[batch_size];
   float y[batch_size];
@@ -26,4 +27,29 @@ int main(void) {
   }
   d.print_weights();
   return 0;
+}
+
+int test_permutation() {
+  constexpr int n = 10;
+  float x[n];
+  RandomPermutation<n> rp(x, x, x, x, 1);
+  for (size_t i = 0; i < n; ++i) {
+    x[i] = i;
+  }
+  for (size_t t = 0; t < 100; ++t) {
+    rp.forward();
+    for (size_t i = 0; i < n; ++i) {
+      std::cout << x[i] << " ";
+    }
+    std::cout << std::endl;
+    rp.backward(true);
+    for (size_t i = 0; i < n; ++i) {
+      std::cout << x[i] << " ";
+    }
+    std::cout << std::endl;
+  }
+}
+
+int main(void) {
+  return test_permutation();
 }

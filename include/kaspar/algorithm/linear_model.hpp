@@ -93,8 +93,6 @@ public:
       }
     }
   }
-  float learning_rate;
-  size_t batch_size;
 private:
   float* input; // [batch_size x in]
   float* output; // [batch_size x out]
@@ -103,6 +101,9 @@ private:
   float* grad_output; // [batch_size x in]
 
   std::atomic<float> w[(has_bias + in) * out];
+
+  float learning_rate;
+  size_t batch_size;
 };
 
 } // kaspar
