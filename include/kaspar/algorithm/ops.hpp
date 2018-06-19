@@ -2,11 +2,10 @@
 
 namespace kaspar {
 
-
 template<size_t in>
 class PlusOp {
 public:
-  RandomPermutation(
+  PlusOp(
     float* input1, float* input2, float* output, float* grad_input, float* grad_output1, float* grad_output2,
     size_t batch_size=10
   ) : batch_size(batch_size), 
